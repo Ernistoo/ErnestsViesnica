@@ -1,52 +1,60 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Room</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles can be added here */
+        /* Example: */
+        .dark-mode {
+            /* Dark mode styles */
+            background-color: #020305;
+            color: white;
+        }
 
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        .text-gradient {
+            /* Gradient text color */
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(180deg, #020305, #0d1b2a);
+        }
+    </style>
 </head>
 
-<body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    <div class="min-h-screen flex flex-col justify-center items-center bg-gray-100 dark:bg-gray-900">
-        <h1 class="text-3xl font-bold mb-8 text-black dark:text-white">Book a room</h1>
+<body class="font-sans antialiased dark:bg-gray-800 dark:text-white">
+    <div class="min-h-screen flex flex-col justify-center items-center bg-gray-300 dark:bg-gray-900">
+        <h1 class="text-5xl font-bold mb-8 text-gradient dark:text-white">Book a Room</h1>
 
-        @if (Route::has('login'))
-        @auth
-        <a href="{{ url('/dashboard') }}" class="rounded-md px-3 py-2 mb-4 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-            Dashboard
-        </a>
-        @else
-        <a href="{{ route('login') }}" class="rounded-md px-3 py-2 mb-4 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-            Log in
-        </a>
+        <div class="space-y-4">
+            @auth
+            <a href="{{ url('/dashboard') }}" class="btn-primary">
+                Dashboard
+            </a>
+            @else
+            <a href="{{ route('login') }}" class="btn-primary rounded-md border border-gray-600 px-4 py-2 mx-4 transition hover:bg-gray-300 dark:hover:bg-gray-700">
+                Log in
+            </a>
 
-        @if (Route::has('register'))
-        <a href="{{ route('register') }}" class="rounded-md px-3 py-2 mb-4 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-            Register
-        </a>
-        @endif
-        @endauth
-        @endif
+            @if (Route::has('register'))
+            <a href="{{ route('register') }}" class="btn-secondary rounded-md border border-gray-600 px-4 py-2 mx-4 transition hover:bg-gray-300 dark:hover:bg-gray-700">
+                Register
+            </a>
+            @endif
+            @endauth
+        </div>
     </div>
 
+    <script>
+        const darkModeToggle = document.querySelector('.dark-mode-toggle');
 
-
-    <main class="mt-6">
-
-
-
-    </main>
-
-
-
+        darkModeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
 </body>
 
 </html>
